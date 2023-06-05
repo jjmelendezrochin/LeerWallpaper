@@ -7,7 +7,7 @@
     <ProjectGuid>{55818B0C-15EF-4675-9E66-6487F18EA0B1}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>LeerKey1</RootNamespace>
-    <AssemblyName>LeerKey1</AssemblyName>
+    <AssemblyName>LeerKeyWallpaper</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
