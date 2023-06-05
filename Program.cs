@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.Win32;
-
+using System.Windows.Forms;
 
 namespace LeerKey1
 {
@@ -15,21 +15,40 @@ namespace LeerKey1
         {
             // Lee la ubicación del Wallpaper y coloca un archivo de texto para que lo lean los otros equipos
             // y lo coloquen como fondo de pantalla
+            string path = null;
+
             const string userRoot = @"HKEY_CURRENT_USER\Control Panel\Desktop";
             const string key = "WallPaper";
-            //const string keyName = userRoot + "\\" + key;
 
+            InputLanguage myDefaultLanguage = InputLanguage.DefaultInputLanguage;
+            InputLanguage myCurrentLanguage = InputLanguage.CurrentInputLanguage;
+
+            string sDef = myDefaultLanguage.Culture.EnglishName;
+            string sLen = myCurrentLanguage.Culture.EnglishName;
+           
+            // Obtiene el fondo actual
             string sFondo = (string)Registry.GetValue(userRoot, key, null);
 
-            string path = @"D:\My Drive\otros\fondo.txt";
-            if (!File.Exists(path))
+            if (sDef.Contains("English"))
             {
-                // Create a file to write to.
-                using (StreamWriter sw = File.CreateText(path))
-                {
-                    sw.WriteLine(sFondo);
-                }
+                path = @"D:\My Drive\otros\fondo.txt";
             }
+            else {
+                path = @"D:\Mi unidad\otros\fondo.txt";
+            }
+
+            // Borra si existe
+            if (File.Exists(path))
+            {
+                File.Delete(path);                
+            }
+
+            // Create a file to write to.
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                sw.WriteLine(sFondo);
+            }
+
             System.Environment.Exit(0);
         }
     }
